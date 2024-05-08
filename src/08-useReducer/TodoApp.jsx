@@ -1,6 +1,6 @@
-import { TodoList } from "../components/TodoList";
-import { TodoAdd } from "../components/TodoAdd";
 import { useTodo } from "../hooks/useTodo";
+import { TodoCard } from "../components/TodoCard";
+import { useState } from "react";
 
 export const TodoApp = () => {
   const {
@@ -9,9 +9,12 @@ export const TodoApp = () => {
     pendingTodosCount,
     handleNewTodo,
     handleDeleteTodo,
-    handleToggleTodo,
   } = useTodo();
-
+  const [tasks, setTasks] = useState([
+    { id: 1, title: "Tarea 1", column: "To Do" },
+    { id: 2, title: "Tarea 2", column: "In Progress" },
+    { id: 3, title: "Tarea 3", column: "Done" },
+  ]);
   return (
     <>
       <h1>
@@ -19,18 +22,21 @@ export const TodoApp = () => {
         {pendingTodosCount}
       </h1>
       <hr />
-      <div className="row">
-        <div className="col-7">
-          <TodoList
-            todos={todos}
-            onDeleteTodo={handleDeleteTodo}
-            onToggleTodo={handleToggleTodo}
-          />
-        </div>
-        <div className="col-5">
-          <h4>Agregar TODO</h4>
-          <hr />
-          <TodoAdd onNewTodo={handleNewTodo} />
+      <div style={{ backgroundColor: "#00AECC" }}>
+        <div className="container ">
+          <div className="row">
+            {tasks.map((x) => {
+              return (
+                <TodoCard
+                  key={x.id}
+                  task={x}
+                  todo={todos}
+                  onDeleteTodo={handleDeleteTodo}
+                  onNewTodo={handleNewTodo}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

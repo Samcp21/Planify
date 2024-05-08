@@ -11,6 +11,7 @@ lerna-debug.log*
 /src/02-useEffect/
 /src/03-examples/
 /src/07-tarea-memo/
+/src/09-useContext/
 
 node_modules
 dist

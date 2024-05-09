@@ -1,5 +1,5 @@
 import { useTodo } from "../hooks/useTodo";
-import { TodoCard } from "../components/TodoCard";
+import { TodoTask } from "../components/TodoTask";
 import { useState } from "react";
 
 export const TodoApp = () => {
@@ -9,6 +9,7 @@ export const TodoApp = () => {
     pendingTodosCount,
     handleNewTodo,
     handleDeleteTodo,
+    handleOrderTodo,
   } = useTodo();
   const [tasks, setTasks] = useState([
     { id: 1, title: "Tarea 1", column: "To Do" },
@@ -17,22 +18,26 @@ export const TodoApp = () => {
   ]);
   return (
     <>
-      <h1>
+      {/* <h1>
         TodoApp:{todosCount} | Pendientes:
         {pendingTodosCount}
-      </h1>
-      <hr />
-      <div style={{ backgroundColor: "#00AECC" }}>
+      </h1> */}
+      {/* <hr /> */}
+      <div
+        style={{ backgroundColor: "#00AECC", height: "100vh", width: "100vw" }}
+        className="d-flex align-items-center"
+      >
         <div className="container ">
-          <div className="row">
+          <div className="row gap-3">
             {tasks.map((x) => {
               return (
-                <TodoCard
+                <TodoTask
                   key={x.id}
                   task={x}
                   todo={todos}
                   onDeleteTodo={handleDeleteTodo}
                   onNewTodo={handleNewTodo}
+                  handleOrderTodo={handleOrderTodo}
                 />
               );
             })}

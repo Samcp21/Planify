@@ -13,27 +13,45 @@ const style = {
   p: 4,
 };
 
-export const AddCard = ({ open, handleClose, task, onNewTodo }) => {
+export const TodoAddCard = ({
+  open,
+  handleClose,
+  task,
+  onNewTodo,
+  mainTask,
+}) => {
   const { id, column } = task;
-  console.log("task", task);
-  const { description, title, image, idTask, onFormReset, onInputChange } =
-    useForm({
-      description: "",
-      title: "",
-      image: "",
-      idTask: id,
-    });
+  const {
+    description,
+    title,
+    image,
+    idTask,
+    index,
+    onFormReset,
+    onInputChange,
+  } = useForm({
+    description: "",
+    title: "",
+    image: "",
+    idTask: id,
+    index: 0,
+  });
   const onFormSubmit = (event) => {
     event.preventDefault();
+    console.log("mainTask", mainTask);
+    const maxIndex = mainTask.reduce((max, tk) => Math.max(max, tk.index), -1);
+    console.log("maxIndex", maxIndex);
     if (description.trim() !== "") {
       const newTodo = {
         id: new Date().getTime(),
+        index: maxIndex + 1,
         idTask,
         done: false,
         description,
         title,
         image,
       };
+      console.log("newTodo", newTodo);
       onNewTodo(newTodo);
       handleClose();
       onFormReset();

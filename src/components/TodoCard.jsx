@@ -1,45 +1,54 @@
-import { TodoSubCard } from "./TodoSubCard";
-import { AddCard } from "./AddCard";
+import { ImCross } from "react-icons/im";
 import { useState } from "react";
-import { Button } from "@mui/material";
 
-export const TodoCard = ({ todo, onNewTodo, task, onDeleteTodo }) => {
-  const { column } = task;
-  const mainTask = todo.filter((x) => x.idTask == task.id);
+export const TodoCard = ({ card, onDeleteTodo }) => {
+  const { description, image, title } = card;
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
+  const deleteToDo = () => {
+    console.log("delete todo", card);
+    onDeleteTodo(card.id);
+  };
   return (
     <div
-      className="card rounded col m-4"
-      style={{ backgroundColor: "#F1F2F4" }}
+      key={card.id}
+      className="card my-4"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
+      <img
+        src={image}
+        className="card-img-top object-fit-cover w-100 "
+        alt="Image ToDo"
+        style={{ height: "200px" }}
+      />
       <div className="card-body">
-        <h5 className="card-title text-start ">{column}</h5>
-
-        {mainTask.map((card) => {
-          return (
-            <TodoSubCard
-              key={card.id}
-              card={card}
-              onDeleteTodo={onDeleteTodo}
-            />
-          );
-        })}
-
-        <Button className="m-2 text-start" onClick={handleOpen}>
-          + Add a card
-        </Button>
-        {open && (
-          <AddCard
-            open={open}
-            task={task}
-            handleClose={handleClose}
-            onNewTodo={onNewTodo}
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{description}</p>
+        {isHovered && (
+          <ImCross
+            onClick={deleteToDo}
+            style={{
+              position: "absolute",
+              cursor: "pointer",
+              top: "5px",
+              right: "5px",
+              zIndex: 1,
+              color: "red",
+            }}
           />
         )}
+        <footer className="blockquote-footer">
+          Hello world
+          <cite title="Source Title">Source Title</cite>
+        </footer>
       </div>
     </div>
   );

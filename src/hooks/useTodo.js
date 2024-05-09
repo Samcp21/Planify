@@ -35,6 +35,17 @@ export const useTodo = () => {
       payload: id,
     });
   };
+  const handleOrderTodo = (payload) => {
+    const { id, index } = payload;
+    console.log("id", id);
+    dispatch({
+      type: "[TODO] Index Todo",
+      payload: {
+        id,
+        index,
+      },
+    });
+  };
   const handleToggleTodo = (id) => {
     console.log("id", id);
     dispatch({
@@ -53,5 +64,6 @@ export const useTodo = () => {
     handleNewTodo,
     handleDeleteTodo,
     handleToggleTodo,
+    handleOrderTodo,
   };
 };

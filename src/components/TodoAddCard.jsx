@@ -37,7 +37,6 @@ export const TodoAddCard = ({
     idTask: id,
     index: 0,
   });
-  console.log("title", title);
   const onFormSubmit = (event) => {
     event.preventDefault();
     console.log("mainTask", mainTask);

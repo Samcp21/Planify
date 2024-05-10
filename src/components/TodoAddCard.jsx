@@ -1,5 +1,6 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useForm } from "../hooks/useForm";
+// import { useFetchGifs } from "../hooks/useFetchGifs";
 
 const style = {
   position: "absolute",
@@ -36,11 +37,14 @@ export const TodoAddCard = ({
     idTask: id,
     index: 0,
   });
+  console.log("title", title);
   const onFormSubmit = (event) => {
     event.preventDefault();
     console.log("mainTask", mainTask);
     const maxIndex = mainTask.reduce((max, tk) => Math.max(max, tk.index), -1);
     console.log("maxIndex", maxIndex);
+    // const { images, isLoading } = useFetchGifs(title);
+
     if (description.trim() !== "") {
       const newTodo = {
         id: new Date().getTime(),

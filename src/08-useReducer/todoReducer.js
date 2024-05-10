@@ -17,7 +17,7 @@ export const todoReducer = (initialState = [], action) => {
       const defaultTasks = initialState.filter(
         (todo) => todo.idTask != movingTask.idTask
       );
-      
+
       tasksToAdjust.splice(index, 0, { ...movingTask, index });
 
       const newState = tasksToAdjust.map((todo, idx) => ({

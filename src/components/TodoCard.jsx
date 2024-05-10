@@ -1,21 +1,22 @@
-import { ImCross } from "react-icons/im";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useFetchGifs } from "../hooks/useFetchGifs";
+import { TodoOptionCard } from "./TodoOptionCard";
 
 export const TodoCard = ({ card, onDeleteTodo }) => {
-  const { description, image, title } = card;
-  const [isHovered, setIsHovered] = useState(false);
+  console.log("card", card);
+  const { description, title, image } = card;
+
+  const [hovered, setHovered] = useState(false);
+  const { images } = useFetchGifs(title);
+
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    setHovered(false);
   };
 
-  const deleteToDo = () => {
-    console.log("delete todo", card);
-    onDeleteTodo(card.id);
-  };
   return (
     <div
       key={card.id}
@@ -24,7 +25,7 @@ export const TodoCard = ({ card, onDeleteTodo }) => {
       onMouseLeave={handleMouseLeave}
     >
       <img
-        src={image}
+        src={image ? image : images.url}
         className="card-img-top object-fit-cover w-100 "
         alt="Image ToDo"
         style={{ height: "200px" }}
@@ -32,23 +33,11 @@ export const TodoCard = ({ card, onDeleteTodo }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        {isHovered && (
-          <ImCross
-            onClick={deleteToDo}
-            style={{
-              position: "absolute",
-              cursor: "pointer",
-              top: "5px",
-              right: "5px",
-              zIndex: 1,
-              color: "red",
-            }}
-          />
-        )}
-        <footer className="blockquote-footer">
-          Hello world
-          <cite title="Source Title">Source Title</cite>
-        </footer>
+        <TodoOptionCard
+          onDeleteTodo={onDeleteTodo}
+          hovered={hovered}
+          card={card}
+        />
       </div>
     </div>
   );

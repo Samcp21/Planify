@@ -2,13 +2,7 @@ import { useEffect, useReducer } from "react";
 import { todoReducer } from "../08-useReducer/todoReducer";
 
 export const useTodo = () => {
-  const initialState = [
-    // {
-    //   id: new Date().getTime(),
-    //   description: "Recolectar la piedra del alma",
-    //   done: false,
-    // }
-  ];
+  const initialState = [];
 
   const init = () => {
     return JSON.parse(localStorage.getItem("todos")) || [];
@@ -36,14 +30,9 @@ export const useTodo = () => {
     });
   };
   const handleOrderTodo = (payload) => {
-    const { id, index } = payload;
-    console.log("id", id);
     dispatch({
       type: "[TODO] Index Todo",
-      payload: {
-        id,
-        index,
-      },
+      payload,
     });
   };
   const handleToggleTodo = (id) => {
@@ -51,6 +40,13 @@ export const useTodo = () => {
     dispatch({
       type: "[TODO] Toggle Todo",
       payload: id,
+    });
+  };
+  const handleEditTodo = (payload) => {
+    console.log("payload", payload);
+    dispatch({
+      type: "[TODO] Edit Todo",
+      payload,
     });
   };
   const todosCount = todos.length;
@@ -65,5 +61,6 @@ export const useTodo = () => {
     handleDeleteTodo,
     handleToggleTodo,
     handleOrderTodo,
+    handleEditTodo,
   };
 };

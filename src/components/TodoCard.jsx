@@ -1,7 +1,7 @@
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import { TodoOptionCard } from "./TodoOptionCard";
 
-export const TodoCard = ({ card, onDeleteTodo }) => {
+export const TodoCard = ({ card, onDeleteTodo, onEditTodo,listTasks }) => {
   const { description, title, image } = card;
 
   const { images } = useFetchGifs(title);
@@ -17,7 +17,12 @@ export const TodoCard = ({ card, onDeleteTodo }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        <TodoOptionCard onDeleteTodo={onDeleteTodo} card={card} />
+        <TodoOptionCard
+          onDeleteTodo={onDeleteTodo}
+          onEditTodo={onEditTodo}
+          card={card}
+          listTasks={listTasks}
+        />
       </div>
     </div>
   );

@@ -1,13 +1,11 @@
 import { useTodo } from "../hooks/useTodo";
 import { TodoTask } from "../components/TodoTask";
 import { useState } from "react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 
 export const TodoApp = () => {
   const {
     todos,
-    todosCount,
-    pendingTodosCount,
     handleNewTodo,
     handleDeleteTodo,
     handleOrderTodo,
@@ -40,11 +38,6 @@ export const TodoApp = () => {
   };
   return (
     <>
-      {/* <h1>
-        TodoApp:{todosCount} | Pendientes:
-        {pendingTodosCount}
-      </h1> */}
-      {/* <hr /> */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           style={{
@@ -53,10 +46,16 @@ export const TodoApp = () => {
             height: "100vh",
             width: "100vw",
           }}
-          className="d-flex align-items-center"
+          className="d-flex align-items-center "
         >
-          <div className="container">
-            <div className="row justify-content-between">
+          <div
+            className="container"
+            style={{
+              whiteSpace: "nowrap",
+              overflowX: "auto",
+            }}
+          >
+            <div className="d-flex justify-content-between">
               {tasks.map((x) => {
                 return (
                   <TodoTask

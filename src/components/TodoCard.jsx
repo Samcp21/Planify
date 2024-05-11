@@ -7,7 +7,7 @@ export const TodoCard = ({ card, onDeleteTodo, onEditTodo,listTasks }) => {
   const { images } = useFetchGifs(title);
 
   return (
-    <div key={card.id} className="card my-4">
+    <div key={card.id} className="card m-3">
       <img
         src={image ? image : images?.url}
         className="card-img-top object-fit-cover w-100 "

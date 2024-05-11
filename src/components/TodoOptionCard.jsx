@@ -2,9 +2,8 @@ import { ImCross } from "react-icons/im";
 import { MdModeEdit } from "react-icons/md";
 import { useState } from "react";
 import { TodoForm } from "./TodoForm";
-import { useTodo } from "../hooks/useTodo";
 
-export const TodoOptionCard = ({ onDeleteTodo,onEditTodo, card, listTasks }) => {
+export const TodoOptionCard = ({ onDeleteTodo, onEditTodo, card }) => {
   const [open, setOpen] = useState(false);
 
   const deleteToDo = () => {

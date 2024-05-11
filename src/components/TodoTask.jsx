@@ -19,7 +19,7 @@ export const TodoTask = ({
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="col-4 ">
+    <div className="col-lg-4 col-md-6 col-12 p-2">
       <Droppable droppableId={task.id.toString()}>
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -29,9 +29,7 @@ export const TodoTask = ({
             >
               <div className="card-body d-flex  flex-column ">
                 <h5 className="card-title text-start">{column}</h5>
-                {/* <div class="overflow-x-scroll">Hello world</div> */}
-                <div className="overflow-auto" style={{ maxHeight: "80vh" }}>
-                  {/* {provided.placeholder} */}
+                <div style={{ maxHeight: "80vh" }}>
                   {mainTask.map((task, index) => (
                     <Draggable
                       key={task.id}

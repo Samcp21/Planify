@@ -24,7 +24,6 @@ You can see a live demo of the React Task List [here](https://samcp21.github.io/
 
 
 ## Prototype 📲
-Insert gif or link to demo
 ![](https://i.ibb.co/pbxWNVf/demo-Planify1.png)
 
 ![](https://i.ibb.co/DgZTsVG/demo-Planify2.png)
